@@ -15,6 +15,7 @@
 # in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 # ----------------------------------------------------------------------------
 
+
 grid = """
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -39,7 +40,7 @@ grid = """
 """.replace('\n', ' ')
 
 length = 20
-
+seq_length = 4
 
 def make_matrix():
     matrix = []
@@ -51,18 +52,53 @@ def make_matrix():
 def horizontally(matrix):
     result = []
     for row in range(length):
-        for start_index in range(length - 3):
-            result.append(matrix[row][start_index:start_index + 4])
+        for col in range(length - seq_length + 1):
+            result.append(matrix[row][col:col + seq_length])
     return result
 
 
-def vertically():
-    pass
+def vertically(matrix):
+    result = []
+    for row in range(length - 3):
+        for col in range(length):
+            element = []
+            for pos in range(seq_length):
+                element.append(matrix[row + pos][col])
+            result.append(element)
+    return result
 
 
-def diagonally():
-    pass
-
+def diagonally(matrix):
+    result = []
+    for row in range(length - 3):
+        for col in range(length - 3):
+            element = []
+            for pos in range(seq_length):
+                element.append(matrix[row + pos][col + pos])
+            result.append(element)
+    for row in range(length - 3):
+        for col in range(3, length):
+            element = []
+            for pos in range(seq_length):
+                element.append(matrix[row + pos][col - pos])
+            result.append(element)
+    return result
 
 matrix = make_matrix()
-print(horizontally(matrix))
+seq = horizontally(matrix)
+maximum = int(seq[0][0]) * int(seq[0][1]) * int(seq[0][2]) * int(seq[0][3])
+for elem in seq:
+    product = int(elem[0]) * int(elem[1]) * int(elem[2]) * int(elem[3])
+    if product > maximum:
+        maximum = product
+seq = vertically(matrix)
+for elem in seq:
+    product = int(elem[0]) * int(elem[1]) * int(elem[2]) * int(elem[3])
+    if product > maximum:
+        maximum = product
+seq = diagonally(matrix)
+for elem in seq:
+    product = int(elem[0]) * int(elem[1]) * int(elem[2]) * int(elem[3])
+    if product > maximum:
+        maximum = product
+print(maximum)

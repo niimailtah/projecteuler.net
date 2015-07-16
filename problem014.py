@@ -23,3 +23,26 @@
 # Which starting number, under one million, produces the longest chain?
 #
 # NOTE: Once the chain starts the terms are allowed to go above one million.
+
+
+def seq(n):
+    result = [n]
+    while n != 1:
+        if n % 2 == 0:
+            n = int(n / 2)
+        else:
+            n = 3 * n + 1
+        result.append(n)
+    return result
+
+
+max_length = 1
+start_number = 1
+for current_number in range(1, 10**6):
+    chain_length = len(seq(current_number))
+    print(max_length, current_number, chain_length)
+    if chain_length > max_length:
+        max_length = chain_length
+        start_number = current_number
+
+print(start_number)

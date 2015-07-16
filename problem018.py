@@ -5,7 +5,7 @@
 # e-mail: niimailtah@gmail.com
 # Common nick: Niimailtah
 # ----------------------------------------------------------------------------
-# https://projecteuler.net/problem=17
+# https://projecteuler.net/problem=18
 # Maximum path sum I
 # Problem 18
 # By starting at the top of the triangle below and moving to adjacent numbers on the row below,

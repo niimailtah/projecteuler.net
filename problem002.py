@@ -19,8 +19,9 @@ from libs.fibonacci import fibonacci
 
 
 result = 0
-for f in fibonacci():
+for f, i in fibonacci():
     if f > 4*10**6:
         print("Sum = {}".format(result))
         break
-    result += f
+    if f % 2 == 0:
+        result += f

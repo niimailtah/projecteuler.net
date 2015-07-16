@@ -5,7 +5,7 @@
 def fibonacci():
     """Fibonacci numbers generator
     """
-    a, b = 0, 1
+    a, b, i = 0, 1, 0
     while True:
-        yield a
-        a, b = b, a + b
+        yield a, i
+        a, b, i = b, a + b, i + 1
