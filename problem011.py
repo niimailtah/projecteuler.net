@@ -42,45 +42,46 @@ grid = """
 length = 20
 seq_length = 4
 
+
 def make_matrix():
-    matrix = []
-    for i in range(length):
-        matrix.append(grid[i * length * 3:i * length * 3 + length * 3].split(' ')[1:])
-    return matrix
-
-
-def horizontally(matrix):
     result = []
-    for row in range(length):
-        for col in range(length - seq_length + 1):
-            result.append(matrix[row][col:col + seq_length])
+    for i in range(length):
+        result.append(grid[i * length * 3:i * length * 3 + length * 3].split(' ')[1:])
     return result
 
 
-def vertically(matrix):
+def horizontally(h_matrix):
+    result = []
+    for row in range(length):
+        for col in range(length - seq_length + 1):
+            result.append(h_matrix[row][col:col + seq_length])
+    return result
+
+
+def vertically(v_matrix):
     result = []
     for row in range(length - 3):
         for col in range(length):
             element = []
             for pos in range(seq_length):
-                element.append(matrix[row + pos][col])
+                element.append(v_matrix[row + pos][col])
             result.append(element)
     return result
 
 
-def diagonally(matrix):
+def diagonally(d_matrix):
     result = []
     for row in range(length - 3):
         for col in range(length - 3):
             element = []
             for pos in range(seq_length):
-                element.append(matrix[row + pos][col + pos])
+                element.append(d_matrix[row + pos][col + pos])
             result.append(element)
     for row in range(length - 3):
         for col in range(3, length):
             element = []
             for pos in range(seq_length):
-                element.append(matrix[row + pos][col - pos])
+                element.append(d_matrix[row + pos][col - pos])
             result.append(element)
     return result
 

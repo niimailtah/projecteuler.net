@@ -25,7 +25,7 @@ def factor(n):
 
 
 s = str(factor(100))
-sum = 0
+factors_sum = 0
 for i in range(len(s)):
-    sum += int(s[i])
-print(sum)
+    factors_sum += int(s[i])
+print(factors_sum)

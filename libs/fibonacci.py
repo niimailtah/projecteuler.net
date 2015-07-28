@@ -9,3 +9,10 @@ def fibonacci():
     while True:
         yield a, i
         a, b, i = b, a + b, i + 1
+
+
+if __name__ == "__main__":
+    for f, index in fibonacci():
+        if index == 10:
+            break
+    print(f)
